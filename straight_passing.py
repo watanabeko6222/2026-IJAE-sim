@@ -326,8 +326,8 @@ def main() -> None:
     
     file_name = os.path.basename(__file__).replace(".py", "")
     
-    # Create base figure directory
-    base_fig_dir = Path("figs") / file_name / str(args.seed)
+    # Create base output directory
+    base_fig_dir = Path("results") / file_name / str(args.seed)
     base_fig_dir.mkdir(exist_ok=True, parents=True)
     
     # Setup common parameters

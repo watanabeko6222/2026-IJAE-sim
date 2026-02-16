@@ -108,10 +108,6 @@ def run_all_sections_integrated(
         vel_maha = abs(vel_diff) / np.sqrt(P[3, 3])
         vel_mahas.append(vel_maha)
 
-    print("Mahalanobis ellipse coverage statistics:")
-    print(f"XY: {np.mean(xy_mahas):.2f} ± {np.std(xy_mahas):.2f}")
-    print(f"Theta: {np.mean(theta_mahas):.2f} ± {np.std(theta_mahas):.2f}")
-    print(f"Velocity: {np.mean(vel_mahas):.2f} ± {np.std(vel_mahas):.2f}")
 
     # --- Coverage rate based on chi2 distribution ---
     import scipy.stats
@@ -123,10 +119,6 @@ def run_all_sections_integrated(
     xy_coverage = np.mean(np.array(xy_mahas) <= sqrt_chi2_xy)
     theta_coverage = np.mean(np.array(theta_mahas) <= sqrt_chi2_1d)
     vel_coverage = np.mean(np.array(vel_mahas) <= sqrt_chi2_1d)
-    print(f"Coverage within {int(alpha*100)}% chi2 region (distance threshold):")
-    print(f"  XY: {xy_coverage*100:.1f}% (sqrt(chi2)={sqrt_chi2_xy:.4f})")
-    print(f"  Theta: {theta_coverage*100:.1f}% (sqrt(chi2)={sqrt_chi2_1d:.4f})")
-    print(f"  Velocity: {vel_coverage*100:.1f}% (sqrt(chi2)={sqrt_chi2_1d:.4f})")
 
     return xy_coverage, theta_coverage, vel_coverage
 
@@ -143,8 +135,8 @@ def main() -> None:
     
     file_name = os.path.basename(__file__).replace(".py", "")
     
-    # Create base figure directory
-    base_fig_dir = Path("figs") / file_name / str(args.seed)
+    # Create base output directory
+    base_fig_dir = Path("results") / file_name / str(args.seed)
     base_fig_dir.mkdir(exist_ok=True, parents=True)
     
     # Setup common parameters
@@ -181,22 +173,18 @@ def main() -> None:
     # Calculate and print statistics
     print("\n=== Coverage Statistics ===")
     xy_mean = np.mean(xy_coverage_list)
-    xy_std = np.std(xy_coverage_list)
     theta_mean = np.mean(theta_coverage_list)
-    theta_std = np.std(theta_coverage_list)
-    vel_mean = np.mean(vel_coverage_list)
-    vel_std = np.std(vel_coverage_list) 
+    vel_mean = np.mean(vel_coverage_list) 
     
-    print(f"XY Coverage: {xy_mean:.5f} ± {xy_std:.5f}")
-    print(f"Theta Coverage: {theta_mean:.5f} ± {theta_std:.5f}")
-    print(f"Velocity Coverage: {vel_mean:.5f} ± {vel_std:.5f}")
+    print(f"XY Coverage: {xy_mean:.5f}")
+    print(f"Theta Coverage: {theta_mean:.5f}")
+    print(f"Velocity Coverage: {vel_mean:.5f}")
     
-    # save results to a text file
-    results_file = base_fig_dir / "coverage_results.txt"
+    # save results to a CSV file
+    results_file = base_fig_dir / "content_ratio.csv"
     with open(results_file, "w") as f:
-        f.write(f"XY Coverage: {xy_mean:.5f} ± {xy_std:.5f}\n")
-        f.write(f"Theta Coverage: {theta_mean:.5f} ± {theta_std:.5f}\n")
-        f.write(f"Velocity Coverage: {vel_mean:.5f} ± {vel_std:.5f}\n")
+        f.write("position,theta,vel\n")
+        f.write(f"{xy_mean:.5f},{theta_mean:.5f},{vel_mean:.5f}\n")
 
 
 if __name__ == "__main__":
