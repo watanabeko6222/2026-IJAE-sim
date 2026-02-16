@@ -1,0 +1,3 @@
+XY Coverage: 0.95700 ± 0.20286
+Theta Coverage: 1.00000 ± 0.00000
+Velocity Coverage: 0.94700 ± 0.22403
