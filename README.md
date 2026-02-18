@@ -14,26 +14,31 @@ uv sync --frozen
 
 ## 図の作成
 
-Fig.6, Fig.8, Fig.9, Fig.10:
+Fig.4-6, Fig.4-7, Fig.4-8:
 ```bash
-bash ./scripts/fig6-8-9-10.sh
+bash ./scripts/fig4-6-8.sh
 ```
 
-Fig.7:
+Fig.4-9, Fig.4-10, Fig.4-11:
 ```bash
-bash ./scripts/fig7.sh
+bash ./scripts/fig4-9-11.sh
 ```
 
-Fig.11:
+Fig.4-12, Fig.4-13, Fig.4-14:
 ```bash
-bash ./scripts/fig11.sh
+bash ./scripts/fig4-12-14.sh
+```
+
+Fig.4-15:
+```bash
+bash ./scripts/fig4-15.sh
 ```
 
 ## 表の作成
 
-Table 4:
+Table 4-6:
 ```bash
-bash ./scripts/table4.sh
+bash ./scripts/table4-6.sh
 ```
 
 ## 主な出力先
@@ -48,13 +53,8 @@ bash ./scripts/table4.sh
 - `results/straight_passing_mote_carlo_ablation/1/content_ratio.csv`
 
 論文用にコピーした図:
-- `figs/6/`
-- `figs/7/`
-- `figs/8/`
-- `figs/9/`
-- `figs/10/`
-- `figs/11/`
+- `figs/*/`
 
 論文用にコピーした表:
-- `tables/4/content_ratio_base.csv`
-- `tables/4/content_ratio_ablation.csv`
+- `tables/4-6/content_ratio_base.csv`
+- `tables/4-6/content_ratio_ablation.csv`
