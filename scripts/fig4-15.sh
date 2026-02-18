@@ -4,7 +4,7 @@ set -euo pipefail
 uv run straight_passing_ablation.py -s 42
 
 src_dir="results/straight_passing_ablation/42/section5"
-dst_dir="figs/11"
+dst_dir="figs/4-15"
 mkdir -p "$dst_dir"
 
 cp "$src_dir/abs_theta.png" "$dst_dir/"

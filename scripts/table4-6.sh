@@ -7,7 +7,7 @@ iter=1000
 uv run straight_passing_mote_carlo.py --seed "$seed" --iter "$iter"
 uv run straight_passing_mote_carlo_ablation.py --seed "$seed" --iter "$iter"
 
-dst_dir="tables/4"
+dst_dir="tables/4-6"
 mkdir -p "$dst_dir"
 
 src_base="results/straight_passing_mote_carlo/${seed}/content_ratio.csv"
